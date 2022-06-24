@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<meta charset="utf-8">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<style>
+		.topnav {
+			overflow: hidden;
+			background-color: black;
+			color: white;
+		}
+
+		.topnav-right {
+			float: right;
+		}
+
+		.topnav a:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.topnav a.active {
+			background-color: #04AA6D;
+			color: white;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="topnav">
+		<div class="topnav-right">
+			<h2>Welcome <span th:text="${userNames}"></span> | <a
+					onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+			<form id="logoutForm" method="POST" th:action="@{/logout}">
+			</form>
+		</div>
+	</div>
+
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th> Emp Id </th>
+					<th> Employee First Name </th>
+					<th> Employee Last Name </th>
+					<th> Email Id </th>
+					<th> Experience(Yrs) </th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${employees.empty}">
+					<td colspan="2"> No Employees Available </td>
+				</tr>
+				<tr th:each="emp : ${employees}">
+					<td><span th:text="${emp.empId}"></span></td>
+					<td><span th:text="${emp.firstName}"></span></td>
+					<td><span th:text="${emp.lastName}"></span></td>
+					<td><span th:text="${emp.emailId}"></span></td>
+					<td><span th:text="${emp.exp}"></span></td>
+					<td><a th:href="@{'/delete_employee/' + ${emp.empId} + '?userName=' + ${userNames}}"
+							class="btn btn-danger">Delete</a>
+						<a th:href="@{'/edit_employee/' + ${emp.empId} + '?userName=' + ${userNames}}"
+							class="btn btn-info">Edit</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{'/addEmp?userName=' + ${userNames}}">Add Employee</a>
+	</div>
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

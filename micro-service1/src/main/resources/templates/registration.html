@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Create an account</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link href="/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<form method="POST" class="form-signin" th:object="${userForm}" th:action="@{/registration}">
+			<h2 class="form-signin-heading">Create your account</h2>
+			<div class="form-group">
+				<input type="text" th:field="*{username}" class="form-control" placeholder="UserId" autofocus="true">
+				<span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="password" th:field="*{password}" class="form-control" placeholder="Password">
+				<span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="password" th:field="*{passwordConfirm}" class="form-control"
+					placeholder="Confirm your password">
+				<span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"
+					th:errors="*{passwordConfirm}"></span>
+			</div>
+
+			<div class="form-group">
+
+				<select th:field="*{securityQ1}" class="form-control" placeholder="Select first security question">
+					<option th:value="1" th:text="'Whats your pets name?'"></option>
+					<option th:value="2" th:text="'Which was your first car?'"></option>
+				</select>
+
+				<span class="has-error" th:if="${#fields.hasErrors('securityQ1')}" th:errors="*{securityQ1}"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="text" th:field="*{answer1}" class="form-control" placeholder="Enter answer">
+				<span class="has-error" th:if="${#fields.hasErrors('answer1')}" th:errors="*{answer1}"></span>
+			</div>
+
+			<div class="form-group">
+
+				<select th:field="*{securityQ2}" class="form-control" placeholder="Select second security question">
+					<option th:value="1" th:text="'Whats your fathers name?'"></option>
+					<option th:value="2" th:text="'Which was your first bike?'"></option>
+				</select>
+
+				<span class="has-error" th:if="${#fields.hasErrors('securityQ2')}" th:errors="*{securityQ2}"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="text" th:field="*{answer2}" class="form-control" placeholder="Enter answer">
+				<span class="has-error" th:if="${#fields.hasErrors('answer2')}" th:errors="*{answer2}"></span>
+			</div>
+			<span class="has-error" th:text="${error}"></span>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+		</form>
+
+	</div>
+
+	<script src="/js/main.js"></script>
+</body>
+
+</html>
