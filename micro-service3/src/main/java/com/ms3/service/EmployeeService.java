@@ -1,8 +1,8 @@
-package com.ms1.service;
+package com.ms3.service;
 
 import java.util.List;
 
-import com.ms1.model.Employee;
+import com.ms3.model.Employee;
 
 /**
  * The Interface EmployeeService.
@@ -30,7 +30,7 @@ public interface EmployeeService {
 	 * @param empId the emp id
 	 * @return the long
 	 */
-	void deleteByEmpId(Long empId);
+	Long deleteByEmpId(Long empId);
 
 	/**
 	 * Find by emp id.

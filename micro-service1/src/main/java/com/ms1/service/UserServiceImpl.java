@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User findByUsernameAndpassword(String username, String password) {
-		return userRepository.findByUsernameAndPassword(username, password);
+		String url = "http://micro-service2/findByUsernameAndpassword?userName=" + username + "&password=" + password;
+        return restTemplate.getForObject(url, User.class);
 	}
 
 	/**
@@ -56,7 +57,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User findByUsername(String username) {
-		return userRepository.findByUsername(username);
+		String url = "http://micro-service2/findByUsername?userName=" + username;
+        return restTemplate.getForObject(url, User.class);
 	}
 
 	/**

@@ -37,6 +37,16 @@ public class UserController {
 	public boolean login(@RequestParam String userName, @RequestParam String password) {
 		return securityService.isAuthenticated(userName, password);
 	}
+	
+	@GetMapping("/findByUsernameAndpassword")
+	public User findByUsernameAndpassword(@RequestParam String userName, @RequestParam String password) {
+		return userService.findByUsernameAndpassword(userName, password);
+	}
+	
+	@GetMapping("/findByUsername")
+	public User findByUsername(@RequestParam String userName) {
+		return userService.findByUsername(userName);
+	}
 
 	@PostMapping("/reset-password")
 	public String resetPassword(@RequestBody User userForm) {
